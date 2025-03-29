@@ -1,0 +1,26 @@
+{
+  "filename": "reserves_2005_EOL.xls",
+  "sheet": "Hoja1",
+  "header_row": 10,
+  "column_mapping": {
+    "operador": "operador",
+    "cuenca_provincia": "cuenca_provincia"
+  },
+  "columns": [
+    "operador",
+    "provincia",
+    "cuenca",
+    "metric",
+    "value",
+    "source_file",
+    "scope",
+    "year",
+    "standardized_metric",
+    "unit",
+    "value_boe"
+  ],
+  "row_count": 4480,
+  "created_at": "2025-03-30T17:31:00.719071+00:00",
+  "scope": "end_of_life",
+  "scope_abbr": "eol",
+  "year": 

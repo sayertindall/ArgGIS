@@ -1,0 +1,7 @@
+[tool.poetry]
+name = "oilfield_core_maps"
+version = "0.1.0"
+description = "Core production mapping system for oilfield analytics"
+
+[tool.poetry.dependencies]
+python = "^3.11"

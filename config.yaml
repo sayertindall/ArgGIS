@@ -1,0 +1,19 @@
+paths:
+  data_root: root_data
+  data_raw: data/raw
+  data_interim: data/interim
+  data_processed: data/processed
+  outputs: outputs
+  metadata: metadata
+
+gis:
+  crs_wgs84: EPSG:4326
+  crs_projected: EPSG:3857
+
+transforms:
+  reserves:
+    enabled: true
+    manifest: reserves/manifest.csv
+  wells:
+    enabled: false
+    manifest: wells/manifest.csv

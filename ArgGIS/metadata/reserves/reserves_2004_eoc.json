@@ -1,0 +1,24 @@
+{
+  "filename": "reserves_2004_EOC.xls",
+  "sheet": "Hoja1",
+  "header_row": 11,
+  "column_mapping": {
+    "operador": "operador",
+    "cuenca_provincia_concesion": "cuenca_provincia_concesion"
+  },
+  "columns": [
+    "operador",
+    "metric",
+    "value",
+    "source_file",
+    "scope",
+    "year",
+    "standardized_metric",
+    "unit",
+    "value_boe"
+  ],
+  "row_count": 4794,
+  "created_at": "2025-03-30T17:30:58.973006+00:00",
+  "scope": "end_of_concession",
+  "scope_abbr": "eoc",
+  "year": 

@@ -1,0 +1,22 @@
+{
+  "filename": "reserves_2011_EOC.xls",
+  "sheet": "1-FC",
+  "header_row": 9,
+  "column_mapping": {},
+  "columns": [
+    "unnamed_0",
+    "unnamed_1",
+    "metric",
+    "value",
+    "source_file",
+    "scope",
+    "year",
+    "standardized_metric",
+    "unit",
+    "value_boe"
+  ],
+  "row_count": 7984,
+  "created_at": "2025-03-30T17:31:11.743188+00:00",
+  "scope": "end_of_concession",
+  "scope_abbr": "eoc",
+  "year": 

@@ -1,0 +1,162 @@
+Production Forecast (XLSX):
+  category: Forecast
+  description: Detailed production forecast data for 2024
+  format: XLSX
+  files:
+    - raw/forecast/xlsx/production-forecast-2024.xlsx
+Production Forecast (CSV):
+  category: Forecast
+  description: Projected oil and gas production (CSV format)
+  format: CSV
+  files:
+    - raw/forecast/csv/production-forecast.csv
+Well Locations:
+  category: Well
+  description: All wells incl. location, type, company, depth
+  format: Shapefile
+  files:
+    - raw/well/locations/well-locations.prj
+    - raw/well/locations/well-locations.dbf
+    - raw/well/locations/well-locations.shp
+    - raw/well/locations/well-locations.shx
+Well Production History:
+  category: Well
+  description: Production history per well over time
+  format: CSV
+  files:
+    - raw/well/production-history/well-production-history.csv
+2D Seismic Lines:
+  category: Seismic
+  description: Seismic exploration line geometries
+  format: Shapefile
+  files:
+    - raw/seismic/2d-lines/seismic-2d-lines.shx
+    - raw/seismic/2d-lines/seismic-2d-lines.shp
+    - raw/seismic/2d-lines/seismic-2d-lines.dbf
+    - raw/seismic/2d-lines/seismic-2d-lines.prj
+3D Seismic Surveys:
+  category: Seismic
+  description: 3D seismic survey polygons
+  format: Shapefile
+  files:
+    - raw/seismic/3d-surveys/seismic-3d-surveys.prj
+    - raw/seismic/3d-surveys/seismic-3d-surveys.dbf
+    - raw/seismic/3d-surveys/seismic-3d-surveys.shx
+    - raw/seismic/3d-surveys/seismic-3d-surveys.shp
+Reservoirs by Avg. Depth:
+  category: Reservoir
+  description: Reservoirs categorized by average depth
+  format: Shapefile
+  files:
+    - raw/reservoir/locations-by-depth/reservoir-locations-by-depth.shp
+Reservoirs:
+  category: Reservoir
+  description: Hydrocarbon reservoir polygons with operator info
+  format: Shapefile
+  files:
+    - raw/reservoir/locations/reservoir-locations.shp
+    - raw/reservoir/locations/reservoir-locations.shx
+    - raw/reservoir/locations/reservoir-locations.dbf
+    - raw/reservoir/locations/reservoir-locations.prj
+Oil & Gas Reserves:
+  category: Reservoir
+  description: Proven/probable reserve volumes
+  format: JSON
+  files:
+    - raw/reservoir/reserves/reserves-metadata.json
+Sedimentary Basins:
+  category: Geographical
+  description: Sedimentary basin polygons
+  format: Shapefile
+  files:
+    - raw/geographical/sedimentary-basins/geo-sedimentary-basins.dbf
+    - raw/geographical/sedimentary-basins/geo-sedimentary-basins.shp
+    - raw/geographical/sedimentary-basins/geo-sedimentary-basins.shx
+    - raw/geographical/sedimentary-basins/geo-sedimentary-basins.prj
+Basin Metadata:
+  category: Geographical
+  description: Attributes describing each sedimentary basin
+  format: CSV
+  files:
+    - raw/geographical/basin-metadata/geo-sedimentary-basins-metadata.csv
+Hydraulic Fracturing:
+  category: Drilling
+  description: Hydraulic fracturing registry (Annex IV)
+  format: CSV
+  files:
+    - raw/drilling/hydraulic-fracturing/well-fracture-data.csv
+Completions by Type/Company:
+  category: Drilling
+  description: Well completions by type and company
+  format: CSV
+  files:
+    - raw/drilling/completions-by-type-company/drilling-completed-wells-by-type-and-company.csv
+Drilling Meterage (Company):
+  category: Drilling
+  description: "Meters drilled per company/month/concept (2009\u20132025)"
+  format: CSV
+  files:
+    - raw/drilling/meterage-by-company/drilling-meters-by-company.csv
+Completions by Concept/Province:
+  category: Drilling
+  description: Well completions by concept and province
+  format: CSV
+  files:
+    - raw/drilling/completions-by-concept-province/drilling-completed-wells-by-concept-and-province-2009-2025.csv
+Drilling Meterage (Pre-2009):
+  category: Drilling
+  description: Historic drilled meters by company and concept
+  format: CSV
+  files:
+    - raw/drilling/meterage-pre-2009/drilling-meters-1900-2009.csv
+Active Drilling Wells:
+  category: Drilling
+  description: Active drilling wells by company/month
+  format: CSV
+  files:
+    - raw/drilling/active-wells/drilling-active-wells.csv
+Completed Wells:
+  category: Drilling
+  description: Completions with company, concept, location
+  format: CSV
+  files:
+    - raw/drilling/completed-wells/drilling-completed-wells.csv
+Completions by Type/Basin:
+  category: Drilling
+  description: Well completions by type and basin
+  format: CSV
+  files:
+    - raw/drilling/completions-by-type-basin/drilling-completed-wells-by-type-and-basin.csv
+Exploitation Lots:
+  category: Administrative
+  description: Boundaries of exploitation areas
+  format: CSV
+  files:
+    - raw/administrative/exploitation-lots/admin-exploitation-blocks.csv
+Concessions:
+  category: Administrative
+  description: Legal exploitation concessions
+  format: Shapefile
+  files:
+    - raw/administrative/concessions/admin-exploitation-concessions.prj
+    - raw/administrative/concessions/admin-exploitation-concessions.shp
+    - raw/administrative/concessions/admin-exploitation-concessions.shx
+    - raw/administrative/concessions/admin-exploitation-concessions.dbf
+Production by Reservoir:
+  category: Production
+  description: Oil/gas production volumes by reservoir
+  format: CSV
+  files:
+    - raw/production/by-reservoir/production-oil-by-reservoir.csv
+Daily Gas Production by Province:
+  category: Production
+  description: Gas production daily averages by province
+  format: CSV
+  files:
+    - raw/production/gas-daily-by-province/production-gas-daily-by-province.csv
+Production by Area & Consortium:
+  category: Production
+  description: Oil production by area and consortium
+  format: CSV
+  files:
+    - raw/production/by-area-consortium/production-oil-by-area-and-consortium.csv

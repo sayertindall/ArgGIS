@@ -1,0 +1,4 @@
+*.csv filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+*.bak filter=lfs diff=lfs merge=lfs -text
+*.shp.bak filter=lfs diff=lfs merge=lfs -text
