@@ -872,7 +872,7 @@ class ReserveDataProcessor:
         # Save metadata
         meta_path = self.metadata_dir / f"{standard_name}.json"
         with open(meta_path, 'w', encoding='utf-8') as f:
-            json.dump(meta, f, indent=2, ensure_ascii=False)
+            json.dump(meta, f, indent=2, ensure_ascii=False, default=lambda o: o.item() if hasattr(o, 'item') else o)
         
         logger.info(f"Saved {len(df)} rows to {csv_path}")
         logger.info(f"Saved metadata to {meta_path}")

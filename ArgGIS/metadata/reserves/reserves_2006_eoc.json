@@ -10,13 +10,13 @@
     "cuenca_provincia_concesion_y_yacimiento": "cuenca_provincia_concesion_yacimiento"
   },
   "columns": [
-    "operador",
-    "provincia",
-    "posibles",
     "probables",
+    "operador",
     "concesion",
-    "comprobadas",
     "cuenca",
+    "posibles",
+    "comprobadas",
+    "provincia",
     "metric",
     "value",
     "source_file",
@@ -27,7 +27,8 @@
     "value_boe"
   ],
   "row_count": 5556,
-  "created_at": "2025-03-30T17:31:01.970065+00:00",
+  "created_at": "2025-03-30T18:20:54.085704+00:00",
   "scope": "end_of_concession",
   "scope_abbr": "eoc",
-  "year": 
+  "year": 2006
+}
