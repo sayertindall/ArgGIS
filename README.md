@@ -6,57 +6,7 @@ This project is designed to track and analyze oilfield operations by integrating
 
 The data pipeline consists of several stages that convert raw data into actionable insights:
 
-```mermaid
-flowchart LR
-    A[Raw Data Sources] --> B["Ingestion Module"]
-    B --> C["Data Cleaning & Validation"]
-    C --> D["Coordinate System Standardization"]
-    D --> E["Data Integration & Joining"]
-    E --> F["Feature Engineering"]
-    F --> G["Unified Data Catalog"]
-    G --> H["Database Storage"]
-    G --> I["Visualization & Mapping"]
-    I --> J1["Interactive Maps"]
-    I --> J2["Dashboards"]
-    I --> J3["Analytical Outputs"]
-
-    subgraph Extract
-    A
-    B
-    end
-
-    subgraph Transform
-    C
-    D
-    E
-    F
-    end
-
-    subgraph Load
-    G
-    H
-    end
-
-    subgraph Visualization
-    I
-    J1
-    J2
-    J3
-    end
-
-    style A fill:#f9f9f9,stroke:#333
-    style B fill:#e1f5fe,stroke:#0288d1
-    style C fill:#e8f5e9,stroke:#2e7d32
-    style D fill:#fff3e0,stroke:#ef6c00
-    style E fill:#f3e5f5,stroke:#7b1fa2
-    style F fill:#fce4ec,stroke:#c2185b
-    style G fill:#e8eaf6,stroke:#3f51b5
-    style H fill:#fff8e1,stroke:#ffa000
-    style I fill:#e0f7fa,stroke:#00838f
-    style J1 fill:#f1f8e9,stroke:#558b2f
-    style J2 fill:#ffebee,stroke:#c62828
-    style J3 fill:#ede7f6,stroke:#4527a0
-```
+[![](https://mermaid.ink/img/pako:eNp11EtP4zAQAOC_YnmlPRUUO68mh5WgD2gFWgl2OSzlMIknbbSpXTnOQkH893Xzagoileom-WbGnqR-o6kSSGOaFeo53YA25OZuJYk9Lh7v4JlMwQC5V5VOsXwiZ2c_yOXjii7kGkuTK0lulagKXNGnJuiyJhNL6sBJgSBzuSbfyQMUuYBDTI8nNZ5aPFFKi1yCQXK_Lw1uyb0BKcBefD2NmdYxs67AQhpc65rYGkuVH6r1eFbjucVzBFNpJDO5ziWiHqp5ra6s-i3zLEfRLHpivwp1ZFc1u24rJ1DauRqlYY0fyMKSh7ys7IJfu5ndwm43rLmo5ZLVvTSoITX5Pzyw8qPhdcVykyjbjk93XXv3QkKxN3kKBflZmV1lGtW4skpsg3YbMnsxhzLtw20fVzOgFJ_4Lw2yzJTets-qbX_b2LZzX4ffKBBtU5rh-mt70qx2dc2wZO3I29H9nMXsCyQXJMuLIv6W1ceoNFr9xfgbZ4fPEF62EN2MZ6KHzA_81BnCSQfHmY_RMSOGwuVDOD2WHiPrYeaHqXOScdZlFBhmQQ8DYEkEQzjvMo6TRDg9BME8PxzCq36OCIOMbuRFkAzh9XGOtvhxjknqcDGEiy6jk4UZ9NBxAifwhnDJupTMLvvYH9cNIoYnkvfFMUHsZRKylKUn0u2ki37m99ID5o2tpCO61rmgsdEVjugW9RYOp_TtkGVFzQa39s8Y258CM6gKs6Ir-W7DdiD_KLXtIrWq1hsaZ1CU9qza2X0JpznYt3HbX9X2HUM9UZU0NHbHdQ4av9EXe-Z455Hnuk4YOGzsRW44onsacx6dj7ltPndYyLg79t5H9LUu65z7TuDyKGQ-91nEeTCiKHK7fdw222-9C7__ByvQsgM?type=png)](https://mermaid.live/edit#pako:eNp11EtP4zAQAOC_YnmlPRUUO68mh5WgD2gFWgl2OSzlMIknbbSpXTnOQkH893Xzagoileom-WbGnqR-o6kSSGOaFeo53YA25OZuJYk9Lh7v4JlMwQC5V5VOsXwiZ2c_yOXjii7kGkuTK0lulagKXNGnJuiyJhNL6sBJgSBzuSbfyQMUuYBDTI8nNZ5aPFFKi1yCQXK_Lw1uyb0BKcBefD2NmdYxs67AQhpc65rYGkuVH6r1eFbjucVzBFNpJDO5ziWiHqp5ra6s-i3zLEfRLHpivwp1ZFc1u24rJ1DauRqlYY0fyMKSh7ys7IJfu5ndwm43rLmo5ZLVvTSoITX5Pzyw8qPhdcVykyjbjk93XXv3QkKxN3kKBflZmV1lGtW4skpsg3YbMnsxhzLtw20fVzOgFJ_4Lw2yzJTets-qbX_b2LZzX4ffKBBtU5rh-mt70qx2dc2wZO3I29H9nMXsCyQXJMuLIv6W1ceoNFr9xfgbZ4fPEF62EN2MZ6KHzA_81BnCSQfHmY_RMSOGwuVDOD2WHiPrYeaHqXOScdZlFBhmQQ8DYEkEQzjvMo6TRDg9BME8PxzCq36OCIOMbuRFkAzh9XGOtvhxjknqcDGEiy6jk4UZ9NBxAifwhnDJupTMLvvYH9cNIoYnkvfFMUHsZRKylKUn0u2ki37m99ID5o2tpCO61rmgsdEVjugW9RYOp_TtkGVFzQa39s8Y258CM6gKs6Ir-W7DdiD_KLXtIrWq1hsaZ1CU9qza2X0JpznYt3HbX9X2HUM9UZU0NHbHdQ4av9EXe-Z455Hnuk4YOGzsRW44onsacx6dj7ltPndYyLg79t5H9LUu65z7TuDyKGQ-91nEeTCiKHK7fdw222-9C7__ByvQsgM)
 
 1. **Data Ingestion & Preprocessing**
 
@@ -64,17 +14,17 @@ flowchart LR
    - **Spatial Standardization:** All layers are reprojected to a common coordinate system (EPSG:4326/3857) to ensure consistency.
    - **Data Cleaning:** Null values, duplicates, and outliers are removed or corrected.
 
-2. **Database Design & Storage**
+1. **Database Design & Storage**
 
    - **Normalization:** Data is normalized into dedicated tables for wells, production, drilling, and reserves.
    - **Spatial Databases:** Geospatial data is stored in **PostGIS** or using **GeoParquet** for efficient spatial queries.
 
-3. **ETL & Workflow Automation**
+1. **ETL & Workflow Automation**
 
    - **ETL Frameworks:** Tools like **Apache Airflow** or **Prefect** schedule and monitor data ingestion, transformation, and syncing with field reports or partner APIs.
    - **Versioning:** Large datasets are versioned with **DVC** or **Git LFS**.
 
-4. **Visualization & Mapping**
+1. **Visualization & Mapping**
    - **Mapping:** Maps are created using **GeoPandas**, **Folium**, or **Leaflet** to visualize well statuses, drilling evolution, production heat maps, and reserve distributions.
    - **Interactive Dashboards:** Interactive visualizations are built with **Plotly**, **Bokeh**, or web frameworks like **Dash** and **Streamlit**.
 
@@ -149,154 +99,25 @@ flowchart LR
 
 ## Data Relationships
 
-```mermaid
-graph TB
-    C(("Data Catalog & Validation"))
-
-    subgraph Administrative["Administrative Data"]
-        direction LR
-        A1[Concessions]:::admin
-        A2["Exploitation Lots"]:::admin
-    end
-
-    subgraph Drilling["Drilling Data"]
-        direction LR
-        D1[Active Wells]:::drill
-        D2[Completed Wells]:::drill
-        D3["Completions by Concept/Province"]:::drill
-        D4["Completions by Type/Basin"]:::drill
-        D5["Completions by Type/Company"]:::drill
-        D6["Hydraulic Fracturing"]:::drill
-        D7[Meterage Data]:::drill
-    end
-
-    subgraph Forecast["Forecast Data"]
-        direction LR
-        F1[Production Forecast CSV]:::forecast
-        F2[Production Forecast XLSX]:::forecast
-    end
-
-    subgraph Geographical["Geographical Data"]
-        direction LR
-        G1[Basin Metadata]:::geo
-        G2[Sedimentary Basins]:::geo
-    end
-
-    subgraph Production["Production Data"]
-        direction LR
-        P1[Production by Area]:::prod
-        P2[Production by Reservoir]:::prod
-        P3[Gas Production Daily]:::prod
-    end
-
-    subgraph Reserves["Reserves Data"]
-        direction LR
-        R1[Reserves Manifest & Files]:::reserve
-    end
-
-    subgraph Reservoir["Reservoir Data"]
-        direction LR
-        RE1[Reservoir Locations]:::res
-        RE2[Reservoir Locations by Depth]:::res
-        RE3[Reserves Volumes JSON]:::res
-    end
-
-    subgraph Seismic["Seismic Data"]
-        direction LR
-        S1[2D Seismic Lines]:::seis
-        S2[3D Seismic Surveys]:::seis
-    end
-
-    subgraph Well["Well Data"]
-        direction LR
-        W1[Well Locations]:::well
-        W2[Well Production History]:::well
-    end
-
-    Administrative --> C
-    Drilling --> C
-    Forecast --> C
-    Geographical --> C
-    Production --> C
-    Reserves --> C
-    Reservoir --> C
-    Seismic --> C
-    Well --> C
-
-    %% Styling
-    classDef admin fill:#e3f2fd,stroke:#1565c0
-    classDef drill fill:#e8f5e9,stroke:#2e7d32
-    classDef forecast fill:#fff3e0,stroke:#ef6c00
-    classDef geo fill:#f3e5f5,stroke:#7b1fa2
-    classDef prod fill:#e8eaf6,stroke:#3f51b5
-    classDef reserve fill:#fce4ec,stroke:#c2185b
-    classDef res fill:#f1f8e9,stroke:#558b2f
-    classDef seis fill:#fff8e1,stroke:#f57f17
-    classDef well fill:#e0f7fa,stroke:#00838f
-
-    style C fill:#ffebee,stroke:#c62828,stroke-width:3px
-```
+[![](https://mermaid.ink/img/pako:eNqNVl1vm0gU_Stoqlat5KTMYIPhYaXUblJVyW4VV0m10Icxc7FHy4c1QBpvlP--FzB4wFRrPyQzl3PuPefOMMMLCTMBxCMbxXdb4_unIDXwt3j_PiBLXnBjgX_ibGO8Mx54LAUvZJYG5MOHIG2QebluqFcikanMC4WQJ_AD0g8YVbaA_GxY1U9IBWGVzri9P0avqL_I0hDyHJ_kPz3P41UeDcAw9-fnXZzJgjf0rMgxcx8KqTiRuFQyjmW6wQTt8FxZS-pfhbWPR4jjWpeoUmgIhsKTXQwFiN-DLKx9gFX-jPXeqO3uio_fVPYkcdhYGRKnp8Tv-x18_MRztDxKmf2GUsV4uh8n2Uj6sheKl7EMjWvFw6JU2KhxtOPfoV_FN836DiBja3CdYXt5XmCZdnjuGlxTH3skyuZJx16sHqq60WGu4dko_sft6scpYUzrDWT1QIY8Rr369FzNN9SvV8jAPnFxaNEGMg3B_BUImUBacLU3anTeQ41JOxpDYZrLM2V967USN8aVglraDqMajA1g95CDesqkGsFa_g3PjZ4WGe_7wDErTU7I0Ug7PNfGPfU7yh1PZQS4vu-MaxlD3ULVPPy_2uinK47js6t_bstXpNssrI-jtrCOY2O4qp9LfPG3IwTr6Oshi8sE_39d_fVnDznmZwUyT2SIbg6jc72sqM-WLd24lWnTwBwDGoj51hG0KlHffgAbE1Udhqio-neunEfq1_BeU3-BfvY8sgaibbgveNtkat_HaooGN9LFxR_GonnSXQdarDswtFjvCNDimggt2q3hSazaCFqwbakWqr0d5k3k7VtjVewrlc08jHmeLyEy6lvPiNCB9wasiEVigh6zf8B7Q2f2LDQH-PqEbvHzaAZuh2fgCIsN8O1BeaBEUTQH2lGimROawxJ4drUFBDiR3aFtTtcuH6Cr86HTA1yDW-7U5esB_PBWt3Lm67UwOwYXdDpzThktmqL4o1_Lsl0KA3S1m49eUf_R6zo0mRjAq63WqjcjJ-Id3DRt05527wMuHhiLLjOsATro2qEhDQ_Ti19SFFvP2j0HKZngp5kUxCtUCROSgEp4NSUvVdaAFFtI8JPBw6GACG_tIiBB-oo0vOP_zrKkZaqs3GyJF_E4x1m5w8sIlpLjdk66qMKXBdQiK9OCeFOzzkG8F_JMPMucXrpTyzId26TzqWs5E7InHmPu5ZzhMjGTOpRZ8-nrhPxblzUvZ6ZtMdehMzajLmP2hOBFh2_oXfPJWX95vv4H1wVRFw?type=png)](https://mermaid.live/edit#pako:eNqNVl1vm0gU_Stoqlat5KTMYIPhYaXUblJVyW4VV0m10Icxc7FHy4c1QBpvlP--FzB4wFRrPyQzl3PuPefOMMMLCTMBxCMbxXdb4_unIDXwt3j_PiBLXnBjgX_ibGO8Mx54LAUvZJYG5MOHIG2QebluqFcikanMC4WQJ_AD0g8YVbaA_GxY1U9IBWGVzri9P0avqL_I0hDyHJ_kPz3P41UeDcAw9-fnXZzJgjf0rMgxcx8KqTiRuFQyjmW6wQTt8FxZS-pfhbWPR4jjWpeoUmgIhsKTXQwFiN-DLKx9gFX-jPXeqO3uio_fVPYkcdhYGRKnp8Tv-x18_MRztDxKmf2GUsV4uh8n2Uj6sheKl7EMjWvFw6JU2KhxtOPfoV_FN836DiBja3CdYXt5XmCZdnjuGlxTH3skyuZJx16sHqq60WGu4dko_sft6scpYUzrDWT1QIY8Rr369FzNN9SvV8jAPnFxaNEGMg3B_BUImUBacLU3anTeQ41JOxpDYZrLM2V967USN8aVglraDqMajA1g95CDesqkGsFa_g3PjZ4WGe_7wDErTU7I0Ug7PNfGPfU7yh1PZQS4vu-MaxlD3ULVPPy_2uinK47js6t_bstXpNssrI-jtrCOY2O4qp9LfPG3IwTr6Oshi8sE_39d_fVnDznmZwUyT2SIbg6jc72sqM-WLd24lWnTwBwDGoj51hG0KlHffgAbE1Udhqio-neunEfq1_BeU3-BfvY8sgaibbgveNtkat_HaooGN9LFxR_GonnSXQdarDswtFjvCNDimggt2q3hSazaCFqwbakWqr0d5k3k7VtjVewrlc08jHmeLyEy6lvPiNCB9wasiEVigh6zf8B7Q2f2LDQH-PqEbvHzaAZuh2fgCIsN8O1BeaBEUTQH2lGimROawxJ4drUFBDiR3aFtTtcuH6Cr86HTA1yDW-7U5esB_PBWt3Lm67UwOwYXdDpzThktmqL4o1_Lsl0KA3S1m49eUf_R6zo0mRjAq63WqjcjJ-Id3DRt05527wMuHhiLLjOsATro2qEhDQ_Ti19SFFvP2j0HKZngp5kUxCtUCROSgEp4NSUvVdaAFFtI8JPBw6GACG_tIiBB-oo0vOP_zrKkZaqs3GyJF_E4x1m5w8sIlpLjdk66qMKXBdQiK9OCeFOzzkG8F_JMPMucXrpTyzId26TzqWs5E7InHmPu5ZzhMjGTOpRZ8-nrhPxblzUvZ6ZtMdehMzajLmP2hOBFh2_oXfPJWX95vv4H1wVRFw)
 
 ### Capabilities
 
-- **Comprehensive Asset Monitoring:**  
+- **Monitoring:**  
   Track well statuses, drilling activity, and production trends to optimize operational efficiency.
 
 - **Spatial Analysis & Mapping:**  
   Leverage GIS data to overlay oilfield infrastructure, geological features, and legal boundaries, aiding in asset management and risk assessment.
 
-- **Predictive Analytics & Forecasting:**  
+- **Forecasting:**  
   Integrate production forecasts to support planning, budgeting, and strategic investment decisions.
 
-- **Data Quality & Consistency:**  
-  Standardize and clean datasets to maintain high-quality, actionable data.
-
-- **Automation & Scalability:**  
-  Employ automated ETL workflows for regular updates, ensuring that the system remains current with operational changes and external inputs.
-
-- **Interactive Visualization:**  
+- **Visualization:**  
   Enable dynamic mapping and dashboards to support detailed analyses and presentations for internal teams and external stakeholders.
 
 ### Data Model Diagram
 
-```mermaid
-erDiagram
-    WELLS {
-      int id PK
-      string name
-      geometry location
-      string status
-    }
-    PRODUCTION {
-      int id PK
-      int well_id FK
-      date production_date
-      float oil_volume
-      float gas_volume
-    }
-    DRILLING {
-      int id PK
-      int well_id FK
-      date spud_date
-      date completion_date
-      float drilled_meters
-    }
-    RESERVES {
-      int id PK
-      int well_id FK
-      string reserve_type
-      float reserve_volume
-    }
-    GEOGRAPHY {
-      int id PK
-      string basin_name
-      geometry boundary
-    }
-    WELLS ||--o{ PRODUCTION : "has"
-    WELLS ||--o{ DRILLING : "has"
-    WELLS ||--o{ RESERVES : "has"
-    GEOGRAPHY ||--o{ WELLS : "contains"
-```
+[![](https://mermaid.ink/img/pako:eNqlVW1vmzAQ_ivIVb-lFZgQAt-6JuuqZW2VdJs2RYocfBBrYCPbtE3T_PcB4S1Nu0wbX9A9d37ufPfY3qBAUEA-AjliJJIkmXMj_yiTEGgmuHH_Yc532OmpMeaaaQZqB3wfTyYzY7Mzio9xbTBq3H1uIaUl45HBSQItGIFIQMu1EYuAFFkO4pUmOqvSbHe_u-nt6Ovl_fXtzZGUBfQIcbzI8Y8dnBINRioFzcqdLQq79YaxINoQLF48iDhLDjwRUXueqqrR9Hoyub65-p-aVJrRV9WUeCCSNIZ3a6WSxTHQRd5KkPu9mo5n4-m38ewfq6qGIEGBfICFXqcHyWvfGy25Gt9eTS_uPv34O2ksiWJ88Y5AliLjlMh1k6CR4hTiUjpqxdI9Pb68nJ2JTVcuvjFHK6Lm6I2wZn5_Cmra-Sqo3WkVuFtVRAWCa8J4GdrUfBkTperTExTGCMJyAsoI82H6JzAMHfB6eWvEL_BPMLjUxpV59sioXvk4fXpF0Gq6ZrFDHNKGxXIGTmAeYynlVAyk4qDghoOGY0CspUeOcVSqqHcTDpdLajYchFp9xz3Gkc8-v4fS1bomCcO8lIYkXAYmpm-Q7HfZuFCKRTwBrrv9riZUtrwLd9TSdrMb0OikblPX2eij3n_X2Yqk2dmcox6KJKPI1zKDHkpAJqQwUXlk5kivID8PqFAShZBksS6EtM2XpYT_FCKpV0qRRSvkhyRWuZWlxUVR3eQNKoFTkJf5UdLIdwYlB_I36An5ttk_9_q2bboD0xr2PdvtoTXyMfbOh9j2-ti0XAvbw_62h57LtOa5Yw5s7LmWgx3LwzjnA8q0kF92L0n5oGx_A9Qt9jk?type=png)](https://mermaid.live/edit#pako:eNqlVW1vmzAQ_ivIVb-lFZgQAt-6JuuqZW2VdJs2RYocfBBrYCPbtE3T_PcB4S1Nu0wbX9A9d37ufPfY3qBAUEA-AjliJJIkmXMj_yiTEGgmuHH_Yc532OmpMeaaaQZqB3wfTyYzY7Mzio9xbTBq3H1uIaUl45HBSQItGIFIQMu1EYuAFFkO4pUmOqvSbHe_u-nt6Ovl_fXtzZGUBfQIcbzI8Y8dnBINRioFzcqdLQq79YaxINoQLF48iDhLDjwRUXueqqrR9Hoyub65-p-aVJrRV9WUeCCSNIZ3a6WSxTHQRd5KkPu9mo5n4-m38ewfq6qGIEGBfICFXqcHyWvfGy25Gt9eTS_uPv34O2ksiWJ88Y5AliLjlMh1k6CR4hTiUjpqxdI9Pb68nJ2JTVcuvjFHK6Lm6I2wZn5_Cmra-Sqo3WkVuFtVRAWCa8J4GdrUfBkTperTExTGCMJyAsoI82H6JzAMHfB6eWvEL_BPMLjUxpV59sioXvk4fXpF0Gq6ZrFDHNKGxXIGTmAeYynlVAyk4qDghoOGY0CspUeOcVSqqHcTDpdLajYchFp9xz3Gkc8-v4fS1bomCcO8lIYkXAYmpm-Q7HfZuFCKRTwBrrv9riZUtrwLd9TSdrMb0OikblPX2eij3n_X2Yqk2dmcox6KJKPI1zKDHkpAJqQwUXlk5kivID8PqFAShZBksS6EtM2XpYT_FCKpV0qRRSvkhyRWuZWlxUVR3eQNKoFTkJf5UdLIdwYlB_I36An5ttk_9_q2bboD0xr2PdvtoTXyMfbOh9j2-ti0XAvbw_62h57LtOa5Yw5s7LmWgx3LwzjnA8q0kF92L0n5oGx_A9Qt9jk)
 
 ### Model Details
 
@@ -305,6 +126,12 @@ erDiagram
 - **Drilling:** Records documenting drilling activities, including timelines and meters drilled.
 - **Reserves:** Data on proven and probable reserves tied to each well.
 - **Geography:** Spatial datasets for basins, concessions, and administrative boundaries providing operational context.
+
+## System Architecture
+
+ArgGIS is built on a modern stack designed for geospatial data processing:
+
+[![](https://mermaid.ink/img/pako:eNqdVl2PmzoQ_SsWVd-yWWzIBzxUSoCt9t62d6W0fWjTBwNDggqYGqNuutr_fg0EJyZRqoSXZDw-c2aOPbZfjIjFYLhGkrHf0ZZygT7762LxfW34VFC0YjWPoFobP9Dd3Tu0lOPB5w_oKS0hSwuQ4-ti2bo8BRGM003n8lqXL12Lgma7Kq3QB7oD3jr91hlI59e0qmmW_qEiZcXRjKCd8SBnfKmAo8dCAE9o1MVeF0h-VR1uOC23aJhw526-BZYBVltaQpJmbS1HPiJ93urrYNRq6nyOIEMPpxBbOv9Z_fdJjUIRn0nnWCfksbxkBRRCy2zZZJYWG6jEuNxpLMsmMcFpUSWM5_e6r0mvFmlW3f8lB31BDhG8hviJVeL94-r-PbAnyn_VIDQWr8ngiTOpZgUxakJVIKq_MA7X-RDPbzhbriKmuqQ-6Vco01Xwm0q9uhIsRyryRxbXx4tyPpGze-oQOWiyeWBZWucaY9BWnTExyCRoMvkXygz4eJOd4160m3WBNYtolqVZdo_sGmiJNYtoltXP7TrKw5pFem_XUj7WLKJZKlLXXAHWLKJZam4ldhnIvGUDZe4bsBKSxKNKcPYT3Dd4Mp1E5t68-53GYuuS8llD4j00DGNIwotQPICS26HW7VD7SmgHfvsW7TtGdjXKmk2H7tCGAxRIyP6vjjmWvZzzZAKOoiAwiy1yUc5lL2c0h2l0GToobEluh1pXQpUm-xNICVLWXDbSqSJer0gMs2SqCKYUhw69qIjXKwI4BJhdhA7K8siVUFWWOpH6umgeyt-Tsvw9QZIk8RFBEkYmiS-W5WMFhSi0LkIHZfnkdqh1JVQpoh-6vSxcXh8nogQHDim74ghnOMLRRVGCgyhRHJOL0EFlAbkdal0JVaJ8eVRKCKDZqRQP_QY05bmKVWTTnDqTc1KsC2NkbHgaG67gNYyMHHhOG9N4aeLKh8MWcnnhu_KvPL5onYnm7nuVsJIW3xjLeyRn9WZruAnNKmnVZUwF-CmVl2iuRrm85IB7rC6E4drTNobhvhjPhmuZ9tixLcucTU08tx1rNjJ2hkuIM54Ty7GJiWeYWHP7dWT8aWnN8cScWsSZ4QmZYIcQGQ_iVB4QH7uHaPseff0fLN5HdQ?type=png)](https://mermaid.live/edit#pako:eNqdVl2PmzoQ_SsWVd-yWWzIBzxUSoCt9t62d6W0fWjTBwNDggqYGqNuutr_fg0EJyZRqoSXZDw-c2aOPbZfjIjFYLhGkrHf0ZZygT7762LxfW34VFC0YjWPoFobP9Dd3Tu0lOPB5w_oKS0hSwuQ4-ti2bo8BRGM003n8lqXL12Lgma7Kq3QB7oD3jr91hlI59e0qmmW_qEiZcXRjKCd8SBnfKmAo8dCAE9o1MVeF0h-VR1uOC23aJhw526-BZYBVltaQpJmbS1HPiJ93urrYNRq6nyOIEMPpxBbOv9Z_fdJjUIRn0nnWCfksbxkBRRCy2zZZJYWG6jEuNxpLMsmMcFpUSWM5_e6r0mvFmlW3f8lB31BDhG8hviJVeL94-r-PbAnyn_VIDQWr8ngiTOpZgUxakJVIKq_MA7X-RDPbzhbriKmuqQ-6Vco01Xwm0q9uhIsRyryRxbXx4tyPpGze-oQOWiyeWBZWucaY9BWnTExyCRoMvkXygz4eJOd4160m3WBNYtolqVZdo_sGmiJNYtoltXP7TrKw5pFem_XUj7WLKJZKlLXXAHWLKJZam4ldhnIvGUDZe4bsBKSxKNKcPYT3Dd4Mp1E5t68-53GYuuS8llD4j00DGNIwotQPICS26HW7VD7SmgHfvsW7TtGdjXKmk2H7tCGAxRIyP6vjjmWvZzzZAKOoiAwiy1yUc5lL2c0h2l0GToobEluh1pXQpUm-xNICVLWXDbSqSJer0gMs2SqCKYUhw69qIjXKwI4BJhdhA7K8siVUFWWOpH6umgeyt-Tsvw9QZIk8RFBEkYmiS-W5WMFhSi0LkIHZfnkdqh1JVQpoh-6vSxcXh8nogQHDim74ghnOMLRRVGCgyhRHJOL0EFlAbkdal0JVaJ8eVRKCKDZqRQP_QY05bmKVWTTnDqTc1KsC2NkbHgaG67gNYyMHHhOG9N4aeLKh8MWcnnhu_KvPL5onYnm7nuVsJIW3xjLeyRn9WZruAnNKmnVZUwF-CmVl2iuRrm85IB7rC6E4drTNobhvhjPhmuZ9tixLcucTU08tx1rNjJ2hkuIM54Ty7GJiWeYWHP7dWT8aWnN8cScWsSZ4QmZYIcQGQ_iVB4QH7uHaPseff0fLN5HdQ)
 
 ### Visualization Outputs
 
@@ -333,31 +160,9 @@ The system generates several types of visualization outputs:
    - Time series visualization of reserve changes
    - Comparison of different reserve categories (proven, probable, possible)
 
-### Ingestion & Data Processing
+#### System Diagram
 
-A dedicated ingestion module is responsible for:
-
-- **Recursive File Discovery:**  
-  Scanning `ArgGIS/data/raw` using Python's `pathlib` and `glob` to list all datasets.
-- **Specialized Loaders:**
-  - **CSV Loader:** Uses `pandas.read_csv` with robust error handling.
-  - **Excel Loader:** Leverages `openpyxl`/`xlrd` with custom header detection and table tidying functions.
-  - **Spatial Data Loader:** Uses `geopandas.read_file` for shapefiles and DBF formats.
-- **Validation:**  
-  Ensures that each dataset meets minimal schema requirements (e.g., required columns, valid geometries).
-- **Data Catalog:**  
-  Stores each dataset along with its metadata (source path, file type, row/column counts) in a central catalog object, making it accessible for further processing.
-
-After ingestion, the pipeline applies normalization and integration routines:
-
-- **Column & Data Normalization:**  
-  Functions standardize all datasets.
-- **Unique Identifiers:**  
-  Generate or map unique IDs for entities to allow seamless joins between datasets.
-- **Schema Unification:**  
-  Define a comprehensive schema to integrate all data categories.
-- **ETL Workflows:**  
-  Use automation tools to schedule data ingestion and transformation jobs.
+[![](https://mermaid.ink/img/pako:eNp9lF1r2zAUhv-KUG-TIsvfvhg0cT4KK4wWNtiyC9k6SsQcK0hy2jT0v09xEtcbwb7ya73POe85GB1xqTjgDItKvZYbpi36-ryqkXsefq3wN61KMAY4ypllK_wbjcdf0MSd_ICqQi-W2cagJ7ZzRxeqdUzPLG9KK1WNlsDsDVfuXLmWVSXrNXpw1r20BzTbq6o5Yf-5Z879DAb0HlAujdWyaG03Cs-d9QWk2coSTdUeNFvDDdvi35RzpaFkxqLv0jSsku-sS3GmJi21dNRjbV3RU2KXhZlNoZjmpis_PRvPIu-LWV_M-2JxFWe5bOXjaUNQSnPK99LsdkrbXiBjDxW4YYTbYXYHRMSCjdxm1B_I7giJSBRc5PhVcrvJ6O6tT04upPBEAmlH-n6UejBITq-kgAKgI4vYK71ykMyvaTnEIurIgHlBMkzOup7CsR0pipJQPkjOrz0TYL2efhqkrBgkF9eeSVFw0pGMe0EYD5LLrqcIe7ulEHOfDpKPn3Mm4H3OGcYlITdIPMJrLTnOrG5ghLegt-wk8fFUdYXtBrawwpl75SBYU7lfaFV_OGzH6p9Kba-kVs16gzPBKuNUs-PMQi7ZWrNt91VDzUFPVVNbnIVBWwNnR_yGM58E92ng-ySOiJcEqR-P8AFnlKb3CXW7psSLPeonwccIv7dtyX1IIp-msRfS0EspjUYYuLRKP51vpfZy-vgLfOt0sw?type=png)](https://mermaid.live/edit#pako:eNp9lF1r2zAUhv-KUG-TIsvfvhg0cT4KK4wWNtiyC9k6SsQcK0hy2jT0v09xEtcbwb7ya73POe85GB1xqTjgDItKvZYbpi36-ryqkXsefq3wN61KMAY4ypllK_wbjcdf0MSd_ICqQi-W2cagJ7ZzRxeqdUzPLG9KK1WNlsDsDVfuXLmWVSXrNXpw1r20BzTbq6o5Yf-5Z879DAb0HlAujdWyaG03Cs-d9QWk2coSTdUeNFvDDdvi35RzpaFkxqLv0jSsku-sS3GmJi21dNRjbV3RU2KXhZlNoZjmpis_PRvPIu-LWV_M-2JxFWe5bOXjaUNQSnPK99LsdkrbXiBjDxW4YYTbYXYHRMSCjdxm1B_I7giJSBRc5PhVcrvJ6O6tT04upPBEAmlH-n6UejBITq-kgAKgI4vYK71ykMyvaTnEIurIgHlBMkzOup7CsR0pipJQPkjOrz0TYL2efhqkrBgkF9eeSVFw0pGMe0EYD5LLrqcIe7ulEHOfDpKPn3Mm4H3OGcYlITdIPMJrLTnOrG5ghLegt-wk8fFUdYXtBrawwpl75SBYU7lfaFV_OGzH6p9Kba-kVs16gzPBKuNUs-PMQi7ZWrNt91VDzUFPVVNbnIVBWwNnR_yGM58E92ng-ySOiJcEqR-P8AFnlKb3CXW7psSLPeonwccIv7dtyX1IIp-msRfS0EspjUYYuLRKP51vpfZy-vgLfOt0sw)
 
 ## Tech Stack & Environment
 
@@ -369,13 +174,77 @@ After ingestion, the pipeline applies normalization and integration routines:
 - **Docker**, **Poetry** (for reproducible environments)
 - **DVC/Git LFS** (for versioning large datasets)
 
-**Optional Enhancements:**
+**Enhancements:**
 
-- **PostGIS** or **GeoParquet** for spatial database storage
+- **PostGIS** / **GeoParquet** for spatial database storage
 - **Contextily** for ESRI/Mapbox basemaps
-- **FastAPI** for RESTful services
 
 ## Project Structure Overview
+
+```
+ArgGIS
+├── backups                             # Backup storage for critical project data
+│   ├── manifest_backup.csv             # Backup of data manifest
+│   ├── reserves_backup.json            # Backup of reserves data
+├── data                                # Main data directory
+│   ├── interim                         # Intermediate data processing outputs
+│   ├── processed                       # Final processed datasets
+│   │   └── reserves                    # Processed reserve calculations
+│   └── raw                             # Original unmodified source data
+│       ├── administrative              # Administrative and management data
+│       ├── drilling                    # Drilling operations data
+│       ├── forecast                    # Production forecasting data
+│       ├── geographical                # Geographic and spatial data
+│       ├── production                  # Oil/gas production data
+│       ├── reserves                    # Hydrocarbon reserves data
+│       ├── reservoir                   # Reservoir characteristics data
+│       ├── seismic                     # Seismic survey data
+│       └── well                        # Well information and logs
+├── metadata                            # Project and data documentation
+│   ├── datasets                        # Dataset-specific metadata
+│   │   ├── documentation.md            # Detailed data documentation
+│   │   ├── file_mapping.csv            # File relationship mappings
+│   │   ├── manifest.md                 # Dataset manifest documentation
+│   │   └── manifest.yaml               # Dataset manifest configuration
+│   └── reserves                        # Reserves-specific metadata
+│       ├── reserves-metadata.json      # Reserves data documentation
+├── notebooks                           # Jupyter notebooks for analysis
+│   ├── EDA                             # Exploratory Data Analysis
+│   ├── MappingPrototypes               # GIS mapping prototypes
+│   ├── Reports                         # Analysis reports and presentations
+├── outputs                             # Generated output files
+│   ├── datastore                       # Processed data storage
+│   ├── interactive                     # Interactive visualizations
+│   ├── maps                            # Generated maps and spatial plots
+│   └── tables                          # Tabular outputs and reports
+└── pipeline                            # Data processing pipeline
+    ├── config.py                       # Pipeline configuration settings
+    ├── ingest.py                       # Data ingestion and loading
+    ├── mapping                         # GIS mapping modules
+    │   ├── map_drilling.py             # Drilling activity visualizations
+    │   ├── map_production.py           # Production data mapping
+    │   ├── map_reserves.py             # Reserves distribution mapping
+    │   └── map_well_status.py          # Well status visualization
+    ├── run.py                          # Pipeline execution script
+    ├── transform                       # Data transformation modules
+    │      └── reserve_processor.py     # Transformation logic for reserves
+    └── utils                           # Utility functions and helpers
+        ├── csv_utils.md                # CSV handling documentation
+        ├── csv_utils.py                # CSV processing utilities
+        ├── file_utils.py               # File management functions
+        ├── geo_utils.py                # Geospatial processing utilities
+        ├── join_utils.py               # Data joining and merging tools
+        ├── metadata_utils.py           # Metadata handling utilities
+        ├── shapefile_utils             # Shapefile processing tools
+        └── transform_utils.py          # Data transformation utilities
+```
+
+### Module Responsibilities
+
+- **Ingest Module:** Centralizes file reading and initial data formatting.
+- **Transform Module:** Handles data normalization and business-specific transformations to create unified data models.
+- **Mapping Module:** Focuses on geospatial rendering and visualization tasks.
+- **Utility Functions:** Provide shared functionality across ingestion, transformation, and mapping tasks.
 
 The project is organized into the following main components:
 

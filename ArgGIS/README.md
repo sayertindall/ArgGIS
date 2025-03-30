@@ -41,14 +41,14 @@ flowchart LR
       H
     end
 
-    style A fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style B fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    style A fill:#ffffff,stroke:#212121,stroke-width:2px
+    style B fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
     style C fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-    style D fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
-    style E fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    style F fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    style G fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
-    style H fill:#fff8e1,stroke:#ffa000,stroke-width:2px
+    style D fill:#fff8e1,stroke:#f57c00,stroke-width:2px
+    style E fill:#ede7f6,stroke:#6a1b9a,stroke-width:2px
+    style F fill:#f8bbd0,stroke:#ad1457,stroke-width:2px
+    style G fill:#e8eaf6,stroke:#3949ab,stroke-width:2px
+    style H fill:#fffde7,stroke:#fbc02d,stroke-width:2px
 ```
 
 ### Key Workflow Steps
@@ -174,17 +174,18 @@ graph TB
     Well --> C
 
     %% Styling
-    classDef admin fill:#e3f2fd,stroke:#1565c0
-    classDef drill fill:#e8f5e9,stroke:#2e7d32
-    classDef forecast fill:#fff3e0,stroke:#ef6c00
-    classDef geo fill:#f3e5f5,stroke:#7b1fa2
-    classDef prod fill:#e8eaf6,stroke:#3f51b5
-    classDef reserve fill:#fce4ec,stroke:#c2185b
-    classDef res fill:#f1f8e9,stroke:#558b2f
-    classDef seis fill:#fff8e1,stroke:#f57f17
-    classDef well fill:#e0f7fa,stroke:#00838f
+classDef admin fill:#e3f2fd,stroke:#1565c0
+classDef drill fill:#e8f5e9,stroke:#2e7d32
+classDef forecast fill:#fff8e1,stroke:#f57c00
+classDef geo fill:#ede7f6,stroke:#6a1b9a
+classDef prod fill:#e8eaf6,stroke:#3949ab
+classDef reserve fill:#f8bbd0,stroke:#ad1457
+classDef res fill:#f1f8e9,stroke:#33691e
+classDef seis fill:#fffde7,stroke:#fbc02d
+classDef well fill:#e0f7fa,stroke:#006064
 
-    style C fill:#ffebee,stroke:#c62828,stroke-width:3px
+style C fill:#ffebee,stroke:#b71c1c,stroke-width:3px
+
 ```
 
 ### Data Model Diagram
@@ -301,15 +302,15 @@ flowchart LR
 
     H --> I["Decision Support"]
 
-    style A fill:#e0f7fa,stroke:#00838f,stroke-width:2px
-    style B fill:#f1f8e9,stroke:#558b2f,stroke-width:2px
-    style C fill:#ffebee,stroke:#c62828,stroke-width:2px
-    style D fill:#ede7f6,stroke:#4527a0,stroke-width:2px
-    style E fill:#fff8e1,stroke:#f57f17,stroke-width:2px
-    style F fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
-    style G fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style A fill:#e0f7fa,stroke:#006064,stroke-width:2px
+    style B fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    style C fill:#ffebee,stroke:#b71c1c,stroke-width:2px
+    style D fill:#ede7f6,stroke:#4a148c,stroke-width:2px
+    style E fill:#fffde7,stroke:#fbc02d,stroke-width:2px
+    style F fill:#e8eaf6,stroke:#3949ab,stroke-width:2px
+    style G fill:#f8bbd0,stroke:#ad1457,stroke-width:2px
     style H fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-    style I fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    style I fill:#fff8e1,stroke:#f57c00,stroke-width:2px
 ```
 
 ### Example Visualizations
@@ -342,65 +343,6 @@ flowchart LR
 ## Technical Architecture
 
 ArgGIS is built on a modern stack designed for geospatial data processing:
-
-```mermaid
-flowchart TD
-    A[Data Sources] --> B[ETL Pipeline]
-    B --> C[Data Storage]
-    C --> D[Analysis Layer]
-    D --> E[Visualization Layer]
-    E --> F[User Interface]
-
-    subgraph "Data Sources"
-        A1[Shapefiles]
-        A2[CSVs]
-        A3[Excel Files]
-        A4[JSON]
-    end
-
-    subgraph "ETL Pipeline Components"
-        B1[ingest.py]
-        B2[transform/]
-        B3[utils/]
-    end
-
-    subgraph "Data Storage"
-        C1[PostGIS/GeoParquet]
-        C2[Processed Datasets]
-    end
-
-    subgraph "Analysis Layer"
-        D1[GeoPandas]
-        D2[Shapely]
-        D3[Custom Analysis Modules]
-    end
-
-    subgraph "Visualization Layer"
-        E1[Folium]
-        E2[Plotly]
-        E3[Kepler.gl]
-    end
-
-    A --> A1
-    A --> A2
-    A --> A3
-    A --> A4
-
-    B --> B1
-    B --> B2
-    B --> B3
-
-    C --> C1
-    C --> C2
-
-    D --> D1
-    D --> D2
-    D --> D3
-
-    E --> E1
-    E --> E2
-    E --> E3
-```
 
 ```mermaid
 flowchart TD
@@ -460,32 +402,38 @@ E --> F["User Interface"]
     E --> E2
     E --> E3
 
-    style A fill:#e0f7fa,stroke:#00838f,stroke-width:2px
-    style B fill:#f1f8e9,stroke:#558b2f,stroke-width:2px
-    style C fill:#ffebee,stroke:#c62828,stroke-width:2px
-    style D fill:#ede7f6,stroke:#4527a0,stroke-width:2px
-    style E fill:#fff8e1,stroke:#f57f17,stroke-width:2px
-    style F fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    style A fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style A1 fill:#bbdefb,stroke:#1565c0,stroke-width:1px
+    style A2 fill:#bbdefb,stroke:#1565c0,stroke-width:1px
+    style A3 fill:#bbdefb,stroke:#1565c0,stroke-width:1px
+    style A4 fill:#bbdefb,stroke:#1565c0,stroke-width:1px
 
-    style A1 fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style A2 fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style A3 fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style A4 fill:#f9f9f9,stroke:#333,stroke-width:2px
+    %% Processing layer - green tones
+    style B fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style B1 fill:#c8e6c9,stroke:#2e7d32,stroke-width:1px
+    style B2 fill:#c8e6c9,stroke:#2e7d32,stroke-width:1px
+    style B3 fill:#c8e6c9,stroke:#2e7d32,stroke-width:1px
 
-    style B1 fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-    style B2 fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
-    style B3 fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    %% Storage layer - purple tones
+    style C fill:#ede7f6,stroke:#6a1b9a,stroke-width:2px
+    style C1 fill:#e1bee7,stroke:#6a1b9a,stroke-width:1px
+    style C2 fill:#e1bee7,stroke:#6a1b9a,stroke-width:1px
 
-    style C1 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
-    style C2 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    %% Analysis layer - amber tones
+    style D fill:#fffde7,stroke:#fbc02d,stroke-width:2px
+    style D1 fill:#ffecb3,stroke:#fbc02d,stroke-width:1px
+    style D2 fill:#ffecb3,stroke:#fbc02d,stroke-width:1px
+    style D3 fill:#ffecb3,stroke:#fbc02d,stroke-width:1px
 
-    style D1 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
-    style D2 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
-    style D3 fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    %% Visualization layer - red tones
+    style E fill:#ffebee,stroke:#b71c1c,stroke-width:2px
+    style E1 fill:#ffcdd2,stroke:#b71c1c,stroke-width:1px
+    style E2 fill:#ffcdd2,stroke:#b71c1c,stroke-width:1px
+    style E3 fill:#ffcdd2,stroke:#b71c1c,stroke-width:1px
 
-    style E1 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    style E2 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    style E3 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    %% UI layer - teal tones
+    style F fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+
 ```
 
 ### Core Technologies
